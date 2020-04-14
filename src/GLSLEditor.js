@@ -22,7 +22,7 @@ export class GLSLEditor extends Component{
                 <AceEditor
                 mode={"glsl"}
                 theme={"monokai"}
-                fontSize={16}
+                fontSize={20}
                 value={this.props.frag}
                 style={{width:"100%", height:"300px",borderRadius:"8px"}}
                 onChange={this.onGLSLChange}
