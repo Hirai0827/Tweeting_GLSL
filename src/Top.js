@@ -43,11 +43,11 @@ export class Top extends Component{
                             o = FragColor <br/>
                             <br/>
                             <div style={{fontSize:"28px"}}>
-                                Using package
+                                Using packages
                             </div>
-                            react-ace <br/>
-                            material-ui <br/>
-                            GIFEncoder.js <br/>
+                            <a href="" target="_blank">react-ace</a><br/>
+                            <a href="" target="_blank">material-ui</a><br/>
+                            <a href=""target="_blank">GIFEncoder.js</a><br/>
                             <br/>
                             <div style={{fontSize:"28px"}}>
                             Presented by
