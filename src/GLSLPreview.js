@@ -15,7 +15,7 @@ export class GLSLPreview extends Component{
             "uniform vec2 mouse;\n" +
             "uniform vec2 resolution;\n" +
             "\n" +
-            "void mainImage(vec2 uv,float t, out vec4 o){\n";
+            "void mainImage(vec2 p,float t,vec2 F,vec2 R, out vec4 o){\n";
         this.fragMain =
             "#define PI 3.1415\n" +
             "\to=vec4(uv.x,uv.y,sin(t*PI)*0.5+0.5,1.0);\n";
@@ -25,8 +25,10 @@ export class GLSLPreview extends Component{
             "void main( void ) {\n" +
             "\n" +
             "\tvec2 uv = ( gl_FragCoord.xy / resolution.xy );\n" +
+            "\tvec2 F = gl_FragCoord.xy; \n" +
+            "\tvec2 R = resolution.xy;\n" +
             "\tvec4 col;\n" +
-            "\tmainImage(uv,time,col);\n" +
+            "\tmainImage(uv,time,F,R,col);\n" +
             "\n" +
             "\tgl_FragColor = col;\n" +
             "\n" +
@@ -161,8 +163,12 @@ export class GLSLPreview extends Component{
         let fs = glContext.createShader(glContext.FRAGMENT_SHADER);
 
         // ソースの割り当て
-        console.log(this.props.frag);
-        glContext.shaderSource(fs, this.preFrag + this.props.frag + this.postFrag);
+        //console.log(this.props.frag)
+        if(this.props.isEasyMode){
+            glContext.shaderSource(fs, this.preFrag + this.props.frag + this.postFrag);
+        }else{
+            glContext.shaderSource(fs, this.props.frag);
+        }
 
         // シェーダのコンパイル
         glContext.compileShader(fs);
@@ -171,7 +177,8 @@ export class GLSLPreview extends Component{
         glContext.attachShader(program, fs);
 
 
-
+        let el = (glContext.getShaderInfoLog(fs));
+        this.props.changeErrorLog(el);
         if(!glContext.getShaderInfoLog(vs) && !glContext.getShaderInfoLog(fs)){
             glContext.linkProgram(program);
             prevFrag = this.state.currentFrag;
@@ -204,8 +211,6 @@ export class GLSLPreview extends Component{
 
     canvasRender(){
         let canvas = document.getElementById('PreviewCanvas');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
         let glContext = canvas.getContext("webgl");
         this.updateShader(glContext);
         // シェーダのリンクに失敗していたら実行しない
@@ -220,6 +225,9 @@ export class GLSLPreview extends Component{
 
         // 時間の経過を調べる
         let shaderTime = (new Date().getTime() - this.state.beginTime) * 0.001;
+        if(this.props.isGenBegin){
+            shaderTime = this.props.currentGenFrame * 0.001;
+        }
 
         glContext.uniform1f(this.state.uniforms.time, shaderTime);
         glContext.uniform2fv(this.state.uniforms.resolution, [canvas.width, canvas.height]);
@@ -233,6 +241,14 @@ export class GLSLPreview extends Component{
         glContext.drawArrays(glContext.TRIANGLE_STRIP, 0, 4);
         glContext.flush();
 
+        let can_2d = document.getElementById("2dCanvas");
+        let ctx_2d = can_2d.getContext("2d");
+        // canvasクリア
+        ctx_2d.clearRect(0,0, can_2d.width, can_2d.height);
+        // webglのcanvasを指定
+        ctx_2d.drawImage(canvas, 0, 0);
+
+
         // 再起
         requestAnimationFrame(this.canvasRender);
     }
@@ -240,7 +256,8 @@ export class GLSLPreview extends Component{
     render() {
         return (
             <div>
-                <canvas id={"PreviewCanvas"} style={{width:"100%",height:"300px",borderRadius:"8px"}}/>
+                <canvas id={"PreviewCanvas"} width={450} height={300} style={{width:"450px",height:"300px",borderRadius:"8px", filter:"drop-shadow(2px 2px 4px)"}}/>
+                <canvas id={"2dCanvas"} width={450} height={300} style={{width:"450px",height:"300px",borderRadius:"8px", filter:"drop-shadow(2px 2px 4px)",display:"none"}}/>
             </div>
         );
     }

@@ -5,19 +5,23 @@
     top: 0px;
     width: 100%;
     height: 100%;
-    z-index: -1000;
+    z-index: 0;
 
 }
 .TopFrame{
+    position: absolute;
     width: 600px;
-    height: 790px;
+    height: 825px;
     margin-left: calc(50% - 300px);
-    margin-top: 50px;
+    margin-top: 20px;
     background-color: azure;
     border-radius: 12px;
-    padding: 10px 10px 10px 10px;
-    transform: scale(0.8,0.8);
+        padding: 20px 10px 20px 20px;
     filter: drop-shadow(2px 2px 4px);
+    transition: 0.5s;
+}
+.TopFrame.Open{
+    transform:rotateZ(10deg) translate(150px,15px);
 }
 .TopEditorFrame {
     width: 100%;

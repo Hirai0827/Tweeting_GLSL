@@ -7,7 +7,23 @@ import {GLSLController} from "./GLSLController";
 export class Top extends Component{
     constructor(props) {
         super(props);
+        this.state={
+            isDescriptionIOpen:false
+        }
+        this.openInstruction = this.openInstruction.bind(this);
 
+    }
+
+    openInstruction(){
+        this.setState({isDescriptionOpen:!this.state.isDescriptionOpen});
+        console.log("clicked");
+
+        let target = document.getElementById("description");
+        if(this.state.isDescriptionOpen){
+            target.classList.add("Open");
+        }else{
+            target.classList.remove("Open");
+        }
     }
 
     render() {
@@ -15,15 +31,43 @@ export class Top extends Component{
             <div>
                 <BackGround/>
                 <div style={{textAlign:"center"}}>
+                    <div className={"TopFrame"} style={{backgroundColor:"#FF0461",transformOrigin:"bottom right"}} id={"description"}>
+                        <div style={{textAlign:"right", fontSize:"20px",fontWeight:"bold",color:"white"}}>
+                            <div style={{fontSize:"28px"}}>
+                                EasyMode Uniforms
+                            </div>
+                            p = (FragCoord/resolution) <br/>
+                            R = resolution <br/>
+                            F = FragCoord <br/>
+                            t = time <br/>
+                            o = FragColor <br/>
+                            <br/>
+                            <div style={{fontSize:"28px"}}>
+                                Using package
+                            </div>
+                            react-ace <br/>
+                            material-ui <br/>
+                            GIFEncoder.js <br/>
+                            <br/>
+                            <div style={{fontSize:"28px"}}>
+                            Presented by
+                        </div>
+                            避雷(@lucknknock)
+                        </div>
+                    </div>
                     <div className={"TopFrame"}>
                         <div className={"TopEditorFrame"}>
                             <Grid container>
                                 <Grid item xs={2} style={{textAlign:"left"}}>
                                     <img src="icon.png" alt="" width={80}/>
                                 </Grid>
-                                <Grid item xs={10}>
+                                <Grid item xs={8}>
                                     <div style={{textAlign:"left",fontSize:"32px",fontWeight:"bold"}}>つぶやきGLSL</div>
                                     <div style={{textAlign:"left",fontSize:"24px",color:"gray"}}>@tweeting_GLSL</div>
+                                </Grid>
+                                <Grid item xs={2} style={{textAlign:"right"}}>
+
+                                    <img src="info.png" alt="" style={{width:"32px"}} onClick={this.openInstruction}/>
                                 </Grid>
                             </Grid>
                             <div style={{height:25}}/>
