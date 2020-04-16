@@ -107,7 +107,7 @@ export class GLSLPost extends Component{
                                     let diff = Math.abs(initialPixels[i].data[pixelIndex * 4] - prevframes[i * samplePerFrame + j].data[0])
                                         + Math.abs(initialPixels[i].data[pixelIndex * 4 + 1] - prevframes[i * samplePerFrame + j].data[1])
                                         +Math.abs(initialPixels[i].data[pixelIndex * 4 + 2] - prevframes[i * samplePerFrame + j].data[2]);
-                                    if(diff < 30){
+                                    if(diff < 10){
                                         //console.log("correct");
                                         correctCount++;
                                     }
