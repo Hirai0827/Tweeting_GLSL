@@ -46,7 +46,8 @@ export class Top extends Component{
                             </div>
                             <div style={{fontSize:14}}>
                                 指定時間より短いところにループが<br/>
-                                あるとそこでGif生成を終了する
+                                あるとそこでGif生成を終了する<br/>
+                                (精度はイマイチかも…)
                             </div>
                             <div style={{fontSize:"24px"}}>
                                 Uniforms

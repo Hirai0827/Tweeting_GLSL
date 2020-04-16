@@ -25,7 +25,7 @@ html{
     transition: 0.5s;
 }
 .TopFrame.Open{
-    transform:rotateZ(10deg) translate(150px,15px);
+    transform:rotateZ(10deg) translate(160px,15px);
 }
 .TopEditorFrame {
     width: 100%;
