@@ -14,6 +14,9 @@ export class GLSLEditor extends Component{
 
     onGLSLChange(newVal){
         this.props.changeFrag(newVal);
+        if(this.props.didNotTouch){
+            this.props.onTouch();
+        }
     }
 
     render() {
