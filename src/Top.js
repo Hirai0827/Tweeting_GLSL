@@ -33,10 +33,18 @@ export class Top extends Component{
                 <div style={{textAlign:"center"}}>
                     <div className={"TopFrame"} style={{backgroundColor:"#FF0461",transformOrigin:"bottom right"}} id={"description"}>
                         <div style={{textAlign:"right", fontSize:"20px",fontWeight:"bold",color:"white"}}>
-                            <div style={{fontSize:"28px"}}>
-                                EasyMode Uniforms
+                            <div style={{fontSize:"24px"}}>
+                                EasyMode
                             </div>
-                            p = (FragCoord/resolution) <br/>
+                            <div style={{fontSize:14}}>
+                                関数が封印される<br/>
+                                エディタがmain関数内のみ表示<br/>
+                                以下の略記が使える
+                            </div>
+                            <div style={{fontSize:"24px"}}>
+                                Uniforms
+                            </div>
+                            p = FragCoord/resolution<br/>
                             R = resolution <br/>
                             F = FragCoord <br/>
                             t = time <br/>
