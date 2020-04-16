@@ -45,14 +45,14 @@ export class Top extends Component{
                             <div style={{fontSize:"28px"}}>
                                 Using packages
                             </div>
-                            <a href="" target="_blank">react-ace</a><br/>
-                            <a href="" target="_blank">material-ui</a><br/>
-                            <a href=""target="_blank">GIFEncoder.js</a><br/>
+                            <a href="https://github.com/securingsincity/react-ace" target="_blank" style={{color:"white"}}>react-ace</a><br/>
+                            <a href="https://material-ui.com/" target="_blank" style={{color:"white"}}>material-ui</a><br/>
+                            <a href="https://github.com/antimatter15/jsgif" target="_blank" style={{color:"white"}}>jsgif</a><br/>
                             <br/>
                             <div style={{fontSize:"28px"}}>
                             Presented by
                         </div>
-                            避雷(@lucknknock)
+                            <a href="https://twitter.com/lucknknock" target="_blank" style={{color:"white"}}>避雷(@lucknknock)</a>
                         </div>
                     </div>
                     <div className={"TopFrame"}>
