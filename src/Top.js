@@ -42,6 +42,13 @@ export class Top extends Component{
                                 以下の略記が使える
                             </div>
                             <div style={{fontSize:"24px"}}>
+                                Loop Detection
+                            </div>
+                            <div style={{fontSize:14}}>
+                                指定時間より短いところにループが<br/>
+                                あるとそこでGif生成を終了する
+                            </div>
+                            <div style={{fontSize:"24px"}}>
                                 Uniforms
                             </div>
                             p = FragCoord/resolution<br/>
