@@ -75,10 +75,8 @@ export class GLSLPreview extends Component{
             return glContext.getShaderInfoLog(k);
         };
         // シェーダのコンパイルとリンク
-        let prevFrag;
         if(!GenerateShader(0, this.vert) && !GenerateShader(1,this.preFrag + this.state.currentFrag + this.postFrag)){
             glContext.linkProgram(program);
-            prevFrag = this.state.currentFrag;
         }
 
         // シェーダのリンクステータスをチェック
@@ -181,7 +179,6 @@ export class GLSLPreview extends Component{
         this.props.changeErrorLog(el);
         if(!glContext.getShaderInfoLog(vs) && !glContext.getShaderInfoLog(fs)){
             glContext.linkProgram(program);
-            prevFrag = this.state.currentFrag;
         }
 
         glContext.useProgram(program);
@@ -212,7 +209,10 @@ export class GLSLPreview extends Component{
     canvasRender(){
         let canvas = document.getElementById('PreviewCanvas');
         let glContext = canvas.getContext("webgl");
-        this.updateShader(glContext);
+        if(this.props.frag != this.state.currentFrag){
+            this.updateShader(glContext);
+            this.setState({currentFrag:this.props.frag});
+        }
         // シェーダのリンクに失敗していたら実行しない
         if(!this.state.hasShaderLinked){
             console.log("err");
