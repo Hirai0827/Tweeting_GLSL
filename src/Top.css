@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 .TopBackGround{
     background-color: #282c34;
     position: fixed;
