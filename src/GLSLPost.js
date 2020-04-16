@@ -161,9 +161,9 @@ export class GLSLPost extends Component{
                     <Grid item xs={1} style={{textAlign:"right",fontSize:"20px"}}>
                         <LimitIndicator textLength={this.props.frag.length}/>
                     </Grid>
-                    <Grid item xs={3} style={{paddingLeft:"20px"}}>
+                    <Grid item xs={3} style={{paddingLeft:"50px"}}>
                         <TextField
-                            label="Sec"
+                            label="gifLength(sec)"
                             type="number"
                             variant="outlined"
                             size="small"
