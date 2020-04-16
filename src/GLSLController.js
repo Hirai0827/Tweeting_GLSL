@@ -46,13 +46,11 @@ export class GLSLController extends Component{
     }
     changeIsEasyMode(){
         this.setState({isEasyMode:!this.state.isEasyMode});
-        if(this.state.didNotTouch){
             if(!this.state.isEasyMode){
                 this.setState({frag:this.fragE});
             }else{
                 this.setState({frag:this.fragNE});
             }
-        }
     }
     changeErrorLog(val){
         this.setState({errorLog:val});
